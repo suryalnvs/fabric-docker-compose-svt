@@ -1,6 +1,6 @@
 # fabric-docker-compose-svt
 ## Cloning the repository:
-Clone the repository under fabric/examples using git clone https://github.com/suryalnvs/fabric-docker-compose-svt
+Clone the repository under fabric/examples using `git clone https://github.com/suryalnvs/fabric-docker-compose-svt`
 
 ## Usage:
 ```
