@@ -1,4 +1,5 @@
 # fabric-docker-compose-svt
+
 ## Cloning the repository:
 Clone the repository under fabric/examples using `git clone https://github.com/suryalnvs/fabric-docker-compose-svt`
 
@@ -19,7 +20,6 @@ for example: ./network_setup.sh -n "mychannel" -c -s -t 10  restart (with couchd
 	     ./network_setup.sh -n "mychannel" -t 10  restart (no tls and no couchdb)
 ``` 
 
-The repository contains multiple docker-compose files
 1) docker-compose-e2e.yaml is used to launch the network with two orderers, three kafka brokers, three zookeepers, two organizations with two peers in each, one ca per each organization. 
 Command to pass in docker-compose-e2e.yaml file to the command is
 ``` ./network_setup.sh -n [channel-name] -s -c -t [cli timer] -f docker-compose-e2e.yaml <up|down|retstart> ```
@@ -28,3 +28,4 @@ Command to pass in docker-compose-cli.yaml file to the command is
 ``` ./network_setup.sh -n [channel-name] -s -c -t [cli timer] -f docker-compose-cli.yaml <up|down|retstart> ```
 3) docker-compose-couchdb.yaml is used to include couchdb containers when -c is passed in the command as shown in above example.
 ``` ./network_setup.sh -n [channel-name] -s -c -f docker-compose-e2e.yaml <up|down|restart> ```
+
