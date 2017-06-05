@@ -79,6 +79,16 @@ services:
       - zookeeper1
       - zookeeper2
 
+  kafka3:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: kafka3
+    container_name: kafka3
+    depends_on:
+      - zookeeper0
+      - zookeeper1
+      - zookeeper2
+
   orderer0.example.com:
     extends:
       file:   base/docker-compose-base.yaml
@@ -94,6 +104,16 @@ services:
       file:   base/docker-compose-base.yaml
       service: orderer1.example.com
     container_name: orderer1.example.com
+    depends_on:
+      - kafka0
+      - kafka1
+      - kafka2
+
+  orderer2.example.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer2.example.com
+    container_name: orderer2.example.com
     depends_on:
       - kafka0
       - kafka1
