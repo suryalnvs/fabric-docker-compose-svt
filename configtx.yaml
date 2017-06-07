@@ -101,6 +101,7 @@ Orderer: &OrdererDefaults
     Addresses:
         - orderer0.example.com:7050
         - orderer1.example.com:7050
+        - orderer2.example.com:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 20s
