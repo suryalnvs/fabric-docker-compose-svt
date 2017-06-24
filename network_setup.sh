@@ -21,12 +21,12 @@ function usage () {
 }
 
 ##process all the options
-while getopts "scn:f:t:h" opt; do
+while getopts "sdcn:f:t:h" opt; do
   case "${opt}" in
-    n)
+    c)
       CH_NAME="$OPTARG"
       ;;
-    c)
+    d)
       COUCHDB="y" ## enable couchdb
       ;;
     t)
@@ -34,6 +34,9 @@ while getopts "scn:f:t:h" opt; do
       ;;
     s)
       SECURITY="y" #Enable TLS
+      ;;
+    n)
+      NUM_CH="$OPTARG" #Number of channels
       ;;
     h)
       usage
@@ -55,6 +58,7 @@ shift $((OPTIND-1))
 UP_DOWN="$@"
 
 ##Set Defaults
+: ${NUM_CH:="1"}
 : ${CH_NAME:="mychannel"}
 : ${SECURITY:="n"}
 : ${COMPOSE_FILE:="docker-compose-cli.yaml"}
@@ -83,16 +87,16 @@ function removeUnwantedImages() {
 function networkUp () {
     #Generate all the artifacts that includes org certs, orderer genesis block,
     # channel configuration transaction
-    source generateArtifacts.sh $CH_NAME
+    source generateArtifacts.sh $CH_NAME $NUM_CH
     if [ "$SECURITY" == "y" -o "$SECURITY" == "Y" ]; then
         SECURITY=true
     else
         SECURITY=false
     fi
     if [ "$COUCHDB" == "y" -o "$COUCHDB" == "Y" ]; then
-       ENABLE_TLS=$SECURITY CHANNEL_NAME=$CH_NAME TIMEOUT=$CLI_TIMEOUT docker-compose -f $COMPOSE_FILE -f docker-compose-couch.yaml up -d 2>&1
+       ENABLE_TLS=$SECURITY CHANNEL_NAME=$CH_NAME NUM_CH=$NUM_CH TIMEOUT=$CLI_TIMEOUT docker-compose -f $COMPOSE_FILE -f docker-compose-couch.yaml up -d 2>&1
     else
-       ENABLE_TLS=$SECURITY CHANNEL_NAME=$CH_NAME TIMEOUT=$CLI_TIMEOUT docker-compose -f $COMPOSE_FILE up -d 2>&1
+       ENABLE_TLS=$SECURITY CHANNEL_NAME=$CH_NAME NUM_CH=$NUM_CH TIMEOUT=$CLI_TIMEOUT docker-compose -f $COMPOSE_FILE up -d 2>&1
     fi
 
     if [ $? -ne 0 ]; then

@@ -104,13 +104,13 @@ Orderer: &OrdererDefaults
         - orderer2.example.com:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
-    BatchTimeout: 20s
+    BatchTimeout: 30s
 
     # Batch Size: Controls the number of messages batched into a block
     BatchSize:
 
         # Max Message Count: The maximum number of messages to permit in a batch
-        MaxMessageCount: 100
+        MaxMessageCount: 500
 
         # Absolute Max Bytes: The absolute maximum number of bytes allowed for
         # the serialized messages in a batch.
@@ -119,7 +119,7 @@ Orderer: &OrdererDefaults
         # Preferred Max Bytes: The preferred maximum number of bytes allowed for
         # the serialized messages in a batch. A message larger than the preferred
         # max bytes will result in a batch larger than preferred max bytes.
-        PreferredMaxBytes: 512 KB
+        PreferredMaxBytes: 1024 KB
 
     Kafka:
         # Brokers: A list of Kafka brokers to which the orderer connects

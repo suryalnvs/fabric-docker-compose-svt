@@ -38,7 +38,7 @@ function replacePrivateKey () {
 
 ## Generates Org certs using cryptogen tool
 function generateCerts (){
-	CRYPTOGEN=$FABRIC_ROOT/release/$OS_ARCH/bin/cryptogen
+	CRYPTOGEN=../build/bin/cryptogen
 
 	if [ -f "$CRYPTOGEN" ]; then
             echo "Using cryptogen -> $CRYPTOGEN"
@@ -58,7 +58,7 @@ function generateCerts (){
 ## Generate orderer genesis block , channel configuration transaction and anchor peer update transactions
 function generateChannelArtifacts() {
 
-	CONFIGTXGEN=$FABRIC_ROOT/release/$OS_ARCH/bin/configtxgen
+	CONFIGTXGEN=../build/bin/configtxgen
 	if [ -f "$CONFIGTXGEN" ]; then
             echo "Using configtxgen -> $CONFIGTXGEN"
 	else
